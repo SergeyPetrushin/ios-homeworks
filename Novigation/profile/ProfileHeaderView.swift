@@ -14,7 +14,7 @@ class ProfileHeaderView: UIView {
         let imageView = UIImageView()
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = 50
+        imageView.layer.cornerRadius = 60
         imageView.image = UIImage(named: "solnce-svet.orig")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -92,15 +92,15 @@ class ProfileHeaderView: UIView {
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            imageView.widthAnchor.constraint(equalToConstant: 100),
-            imageView.heightAnchor.constraint(equalToConstant: 100),
+            imageView.widthAnchor.constraint(equalToConstant: 120),
+            imageView.heightAnchor.constraint(equalToConstant: 120),
             
-            titleName.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 20),
+            titleName.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
             titleName.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             titleName.widthAnchor.constraint(equalToConstant: 100),
             
             titleStatus.leadingAnchor.constraint(equalTo: titleName.leadingAnchor),
-            titleStatus.topAnchor.constraint(equalTo: titleName.bottomAnchor, constant: 34),
+            titleStatus.topAnchor.constraint(equalTo: titleName.bottomAnchor, constant: 15),
             titleStatus.widthAnchor.constraint(equalToConstant: 150),
             
             button.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 15),
@@ -109,8 +109,8 @@ class ProfileHeaderView: UIView {
             button.heightAnchor.constraint(equalToConstant: 50),
             button.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            textField.topAnchor.constraint(equalTo: titleStatus.bottomAnchor, constant: 15),
-            textField.heightAnchor.constraint(equalToConstant: 50),
+            textField.topAnchor.constraint(equalTo: titleStatus.bottomAnchor, constant: 10),
+            textField.heightAnchor.constraint(equalToConstant: 40),
             textField.widthAnchor.constraint(equalToConstant: 200),
             textField.leadingAnchor.constraint(equalTo: titleName.leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),

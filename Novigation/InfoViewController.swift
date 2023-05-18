@@ -19,9 +19,11 @@ class InfoViewController: UIViewController {
         return button
     }()
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         view.addSubview(alertButton)
+        
         NSLayoutConstraint.activate([
             alertButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             alertButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
