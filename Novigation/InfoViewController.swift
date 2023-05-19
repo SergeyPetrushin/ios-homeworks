@@ -14,7 +14,7 @@ class InfoViewController: UIViewController {
         button.setTitle("Show Alert", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .green
+        button.backgroundColor = .red
         button.addTarget(self, action: #selector(runAlert), for: .touchUpInside)
         return button
     }()

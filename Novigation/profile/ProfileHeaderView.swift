@@ -8,6 +8,9 @@
 import UIKit
 class ProfileHeaderView: UIView {
     
+
+    
+    
     private var statusText: String = ""
 
     private let imageView: UIImageView = {

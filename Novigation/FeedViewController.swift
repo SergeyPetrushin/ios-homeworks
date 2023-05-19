@@ -14,7 +14,7 @@ class FeedViewController: UIViewController {
         button.setTitle("Show Post", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .green
+        button.backgroundColor = .red
         button.addTarget(self, action: #selector(showPage), for: .touchUpInside)
         
         return button
