@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     private let profileHeaderView = {
         let  view =  ProfileHeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
     
@@ -38,25 +39,25 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileHeaderView)
         view.addSubview(openPost)
         view.addSubview(profileHeaderView)
-        
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            openPost.heightAnchor.constraint(
-                equalToConstant: 50),
-            openPost.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: 0),
-            openPost.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: 0),
-            openPost.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: 0),
-        ])
-        profileHeaderView.frame = view.frame
-    }
+        setupLayoutConstraint()
     
+         func setupLayoutConstraint () {
+            NSLayoutConstraint.activate([
+                profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                openPost.heightAnchor.constraint(
+                    equalToConstant: 50),
+                openPost.leadingAnchor.constraint(
+                    equalTo: view.leadingAnchor,
+                    constant: 0),
+                openPost.trailingAnchor.constraint(
+                    equalTo: view.trailingAnchor,
+                    constant: 0),
+                openPost.bottomAnchor.constraint(
+                    equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                    constant: 0),
+            ])
+        }
+    }
 }
