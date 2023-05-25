@@ -23,8 +23,10 @@ class PostViewController: UIViewController {
     }()
     lazy var barButtom = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(infoRightButtonTapped))
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         view.backgroundColor = .gray
+        
         navigationController?.navigationBar.barTintColor = .blue
         navigationItem.rightBarButtonItem = barButtom
     }

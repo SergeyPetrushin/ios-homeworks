@@ -12,4 +12,4 @@ struct Post {
     var title: String = ""
 }
 
-let post: Post = .init(title: "Hello World")
+//let post: Post = .init(title: "Hello World")
