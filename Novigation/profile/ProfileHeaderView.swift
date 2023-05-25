@@ -138,6 +138,9 @@ class ProfileHeaderView: UIView {
        
         if let text =  textField.text {
             titleStatus.text = text
+            if titleStatus.text == "" {
+                titleStatus.text = " "
+            }
             print(text)}
     }
 }
