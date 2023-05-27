@@ -9,8 +9,6 @@ import UIKit
 class ProfileHeaderView: UIView {
     
 
-    
-    
     private var statusText: String = ""
 
     private let imageView: UIImageView = {
@@ -89,10 +87,6 @@ class ProfileHeaderView: UIView {
         addSubview(button)
         addSubview(textField)
     }
-//
-//
-//
-//
         
             private  func setupLayoutConstraint() {
             
@@ -123,17 +117,7 @@ class ProfileHeaderView: UIView {
                 textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             ])
         }
-//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
 
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        titleName.translatesAutoresizingMaskIntoConstraints = false
-//        titleStatus.translatesAutoresizingMaskIntoConstraints = false
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        textField.translatesAutoresizingMaskIntoConstraints = false
-
-
-    
-    
     @objc func buttonPressed() {
        
         if let text =  textField.text {
