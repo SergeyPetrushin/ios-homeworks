@@ -29,6 +29,7 @@ class PostViewController: UIViewController {
         
         navigationController?.navigationBar.barTintColor = .blue
         navigationItem.rightBarButtonItem = barButtom
+        
     }
     @objc private func infoRightButtonTapped() {
         let infoViewController = InfoViewController()
