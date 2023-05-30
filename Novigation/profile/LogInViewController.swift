@@ -12,8 +12,6 @@ class LogInViewController: UIViewController {
     
     private let notificationCenter = NotificationCenter.default
     
-    
-
     private let  seporatorForm: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false

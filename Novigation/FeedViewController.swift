@@ -20,7 +20,7 @@ class FeedViewController: UIViewController {
         return button
     }()
     
-    let postName: Post = .init(title: "Пост1")
+//    let postName: Post = .init(title: "Пост1")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class FeedViewController: UIViewController {
     
     @objc func showPage () {
         let postViewController = PostViewController()
-        postViewController.postName = postName.title
+//        postViewController.postName = postName.title
         navigationController?.pushViewController(postViewController, animated: true)
     }
     func setConstraints() {
