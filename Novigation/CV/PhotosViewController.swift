@@ -24,6 +24,7 @@ class PhotosViewController: UIViewController {
         collectionView.register(
             PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
         collectionView.delegate = self
+        collectionView.backgroundColor = .white
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 

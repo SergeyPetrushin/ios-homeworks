@@ -15,6 +15,13 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
     private let ImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 60
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 3
+        imageView.layer.cornerRadius = 10
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
