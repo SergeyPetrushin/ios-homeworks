@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate {
     
     
     //MARK: - Properties
@@ -18,10 +18,12 @@ class ProfileViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+
+
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
@@ -40,8 +42,11 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
         navigationController?.navigationBar.isHidden = true
-
     }
+    
+
+    
+    
     
     //MARK: - Functions
     
@@ -62,6 +67,11 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UITableViewDataSource {
+   
+    
+
+
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -101,15 +111,5 @@ extension ProfileViewController: UITableViewDataSource {
             navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
-    
-    
-}
-extension ProfileViewController: UITableViewDelegate {
 }
 
-//extension LogInViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        view.endEditing(true)
-//        return true
-//    }
-//}

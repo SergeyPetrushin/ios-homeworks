@@ -108,7 +108,7 @@ class ProfileHeaderView: UIView {
                 button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 button.heightAnchor.constraint(equalToConstant: 50),
-                button.bottomAnchor.constraint(equalTo: bottomAnchor),
+                button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
                 
                 textField.topAnchor.constraint(equalTo: titleStatus.bottomAnchor, constant: 10),
                 textField.heightAnchor.constraint(equalToConstant: 40),

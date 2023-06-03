@@ -101,8 +101,7 @@
 				962E6F152A1585BE0079029F /* SceneDelegate.swift */,
 				962E6F172A1585BE0079029F /* ViewController.swift */,
 				961069562A29E158002F3875 /* CV */,
-				96DB80252A21E0AA008699FD /* PostTableViewCell.swift */,
-				963D07E22A262847002D47C5 /* PhotosTableViewCell.swift */,
+				96A849222A2B2F4B00CB39FD /* Feed */,
 				96DB80272A21E106008699FD /* ext.swift */,
 				962E6F192A1585BE0079029F /* Main.storyboard */,
 				962E6F1C2A1585BF0079029F /* Assets.xcassets */,
@@ -110,6 +109,15 @@
 				962E6F212A1585BF0079029F /* Info.plist */,
 			);
 			path = Novigation;
+			sourceTree = "<group>";
+		};
+		96A849222A2B2F4B00CB39FD /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				963D07E22A262847002D47C5 /* PhotosTableViewCell.swift */,
+				96DB80252A21E0AA008699FD /* PostTableViewCell.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		96BA7BD72A162274006EB293 /* profile */ = {

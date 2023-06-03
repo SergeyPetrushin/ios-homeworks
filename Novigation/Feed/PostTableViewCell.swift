@@ -62,6 +62,10 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         postImageView.image = nil
@@ -86,6 +90,8 @@ class PostTableViewCell: UITableViewCell {
             let textInset: CGFloat = 20
             
             NSLayoutConstraint.activate([
+                
+                
                 // contentWhiteView
                 wrapView.topAnchor.constraint(equalTo: contentView.topAnchor),
                 wrapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

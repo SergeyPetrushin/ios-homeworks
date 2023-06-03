@@ -13,7 +13,9 @@ class PhotosTableViewCell: UITableViewCell {
     
     private let headerLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+//        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+
         label.text = "Photos"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -34,15 +36,60 @@ class PhotosTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+
+    private let imageView1: UIImageView = {
+        var imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 60
+        imageView.layer.cornerRadius = 10
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "1")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
-    var imageView1: UIImageView!
-    var imageView2: UIImageView!
-    var imageView3: UIImageView!
-    var imageView4: UIImageView!
+    private let imageView2: UIImageView = {
+        var imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 60
+        imageView.layer.cornerRadius = 10
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "2")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
+    private let imageView3: UIImageView = {
+        var imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 60
+        imageView.layer.cornerRadius = 10
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "3")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let imageView4: UIImageView = {
+        var imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 60
+        imageView.layer.cornerRadius = 10
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "4")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+
+    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addImage()
         addSubviews()
         setupContraints()
     }
@@ -50,17 +97,10 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Functions
-    
 
     
-    private func addImage() {
-        imageView1 = createImageView(nameImageView: "1", nameImage: "1")
-        imageView2 = createImageView(nameImageView: "1", nameImage: "2")
-        imageView3 = createImageView(nameImageView: "3", nameImage: "3")
-        imageView4 = createImageView(nameImageView: "4", nameImage: "4")
-    }
-    
+    //MARK: - Functions
+        
     private func addSubviews(){
         
         contentView.addSubview(mainView)
@@ -70,7 +110,6 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.addSubview(imageView4)
         contentView.addSubview(headerLabel)
         contentView.addSubview(imageRight)
-        
     }
     
     //MARK: - Constraints
@@ -81,12 +120,12 @@ class PhotosTableViewCell: UITableViewCell {
             
         NSLayoutConstraint.activate([
             
-            //             contentWhiteView
+            //             mainView
             mainView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
             mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            
+
             //            headerLabel
             headerLabel.topAnchor.constraint(equalTo: mainView.topAnchor ,constant: Metric.labelInset),
             headerLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor,constant: Metric.labelInset),
@@ -119,7 +158,6 @@ class PhotosTableViewCell: UITableViewCell {
             imageView4.leadingAnchor.constraint(equalTo: imageView3.trailingAnchor,constant: Metric.imageLeftInset),
             imageView4.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -Metric.imageInset),
             
-            
             //            ImageArrow
             imageRight.widthAnchor.constraint(equalToConstant: Metric.imageRightInset),
 //            imageArrow.heightAnchor.constraint(equalToConstant: Metric.imageArrowInset),
@@ -137,7 +175,6 @@ class PhotosTableViewCell: UITableViewCell {
 
 extension PhotosTableViewCell {
     func createImageView(nameImageView: String, nameImage: String) -> UIImageView{
-        
         let nameImageView: UIImageView = {
             let imageView = UIImageView()
             imageView.layer.borderColor = UIColor.white.cgColor
@@ -150,7 +187,6 @@ extension PhotosTableViewCell {
             return imageView
         }()
         return nameImageView
-        
     }
 }
 
