@@ -8,18 +8,54 @@
 import UIKit
 class ProfileHeaderView: UIView {
     
-
     private var statusText: String = ""
-
-    private let imageView: UIImageView = {
+    private var leadingImageView = NSLayoutConstraint()
+    private var trailingImageView = NSLayoutConstraint()
+    private var topImageView = NSLayoutConstraint()
+    private var widthImageView = NSLayoutConstraint()
+    private var heightImageView = NSLayoutConstraint()
+    private var heightWrapView = NSLayoutConstraint()
+    
+    private let avatarLayer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let layerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.layer.opacity = 0.5
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var closeImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.image =  UIImage(systemName: "xmark.circle")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
+        imageView.layer.opacity = 0
+        imageView.tintColor = .white
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapClose)))
+        return imageView
+    }()
+    
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = 60
+        imageView.layer.cornerRadius = 50
         imageView.image = UIImage(named: "solnce-svet.orig")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOpen)))
         return imageView
     }()
     
@@ -57,7 +93,7 @@ class ProfileHeaderView: UIView {
     }()
     
     let textField: UITextField = {
-       let textField = UITextField()
+        let textField = UITextField()
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
         textField.minimumFontSize = 15
@@ -81,50 +117,109 @@ class ProfileHeaderView: UIView {
     }
     
     func setupViews(){
-        addSubview(imageView)
         addSubview(titleName)
         addSubview(titleStatus)
         addSubview(button)
         addSubview(textField)
+        addSubview(avatarLayer)
+        addSubview(layerView)
+        addSubview(imageView)
+        addSubview(closeImage)
     }
+    private  func setupLayoutConstraint() {
         
-            private  func setupLayoutConstraint() {
+        leadingImageView = imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
+        topImageView = imageView.topAnchor.constraint(equalTo: topAnchor,constant: 16)
+        widthImageView = imageView.widthAnchor.constraint(equalToConstant: 95)
+        heightImageView = imageView.heightAnchor.constraint(equalToConstant: 95)
+        NSLayoutConstraint.activate([leadingImageView, topImageView, widthImageView, heightImageView])
+        
+        heightWrapView = layerView.heightAnchor.constraint(equalToConstant: 0)
+        NSLayoutConstraint.activate([heightWrapView])
+        
+        NSLayoutConstraint.activate([
             
-            NSLayoutConstraint.activate([
-                imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-                imageView.widthAnchor.constraint(equalToConstant: 120),
-                imageView.heightAnchor.constraint(equalToConstant: 120),
-                
-                titleName.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-                titleName.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-                titleName.widthAnchor.constraint(equalToConstant: 100),
-                
-                titleStatus.leadingAnchor.constraint(equalTo: titleName.leadingAnchor),
-                titleStatus.topAnchor.constraint(equalTo: titleName.bottomAnchor, constant: 15),
-                titleStatus.widthAnchor.constraint(equalToConstant: 150),
-                
-                button.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 15),
-                button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-                button.heightAnchor.constraint(equalToConstant: 50),
-                button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-                
-                textField.topAnchor.constraint(equalTo: titleStatus.bottomAnchor, constant: 10),
-                textField.heightAnchor.constraint(equalToConstant: 40),
-                textField.widthAnchor.constraint(equalToConstant: 200),
-                textField.leadingAnchor.constraint(equalTo: titleName.leadingAnchor),
-                textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            ])
-        }
-
+            layerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            layerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            layerView.topAnchor.constraint(equalTo: topAnchor),
+            
+            closeImage.widthAnchor.constraint(equalToConstant: 30),
+            closeImage.heightAnchor.constraint(equalToConstant: 30),
+            closeImage.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            closeImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            
+            avatarLayer.widthAnchor.constraint(equalToConstant: 95),
+            avatarLayer.heightAnchor.constraint(equalToConstant: 95),
+            avatarLayer.topAnchor.constraint(equalTo: topAnchor,constant: 16),
+            avatarLayer.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16),
+            
+            titleName.leadingAnchor.constraint(equalTo: avatarLayer.trailingAnchor,constant: 20),
+            titleName.widthAnchor.constraint(equalToConstant: 100),
+            titleName.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16),
+            titleName.topAnchor.constraint(equalTo: avatarLayer.topAnchor ,constant: 0),
+            titleName.widthAnchor.constraint(equalToConstant: 100),
+            titleName.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16),
+            
+            titleStatus.leadingAnchor.constraint(equalTo: titleName.leadingAnchor),
+            titleStatus.topAnchor.constraint(equalTo: titleName.bottomAnchor, constant: 15),
+            titleStatus.trailingAnchor.constraint(equalTo: titleName.trailingAnchor),
+            
+            button.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 15),
+            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            
+            textField.topAnchor.constraint(equalTo: titleStatus.bottomAnchor, constant: 10),
+            textField.heightAnchor.constraint(equalToConstant: 40),
+            textField.widthAnchor.constraint(equalToConstant: 200),
+            textField.leadingAnchor.constraint(equalTo: titleName.leadingAnchor),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        ])
+    }
+    
     @objc func buttonPressed() {
-       
+        
         if let text =  textField.text {
             titleStatus.text = text
             if titleStatus.text == "" {
                 titleStatus.text = " "
             }
             print(text)}
+    }
+    
+    @objc private func tapOpen() {
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.6) {
+                self.widthImageView.constant = UIScreen.main.bounds.width - 60
+                self.leadingImageView.constant = 30
+                self.trailingImageView.constant = 30
+                self.topImageView.constant = 30
+                self.heightImageView.constant = UIScreen.main.bounds.height - 220
+                self.heightWrapView.constant =  UIScreen.main.bounds.height
+                self.imageView.layer.cornerRadius = 0
+                self.layerView.isHidden = false
+                self.closeImage.layer.opacity = 1
+                self.layerView.layer.opacity = 0.3
+            }
+        }
+    }
+    
+    @objc private func tapClose() {
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
+                self.closeImage.layer.opacity = 0
+                self.layerView.layer.opacity = 0
+                self.layerView.isHidden = false
+                self.layerView.isHidden = true
+                self.imageView.layer.cornerRadius = 50
+                self.widthImageView.constant = 95
+                self.leadingImageView.constant = 16
+                self.trailingImageView.constant = 30
+                self.topImageView.constant = 16
+                self.heightImageView.constant = 95
+                self.heightWrapView.constant =  UIScreen.main.bounds.height
+            }
+        }
     }
 }
