@@ -10,15 +10,18 @@ import UIKit
 
 final class PhotosCollectionViewCell: UICollectionViewCell {
     
+    var showFullPhoto: (() -> Void)? = nil
+
     //MARK: - Property
 
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFullPhoto)))
 
         return imageView
     }()
@@ -60,4 +63,9 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
+    
+    @objc func tapFullPhoto() {
+        if let action = self.showFullPhoto { action() }
+    }
+    
 }

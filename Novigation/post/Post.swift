@@ -8,19 +8,13 @@
 
 import UIKit
 
-//struct Post {
-//    var title: String = ""
-//}
-
-//let post: Post = .init(title: "Hello World")
-
-
 struct Post {
     let author: String
     var description: String
     var image: String
     var likes: Int
     var views: Int
+    var isLike = false
     
     static func createPost() -> [Post] {
         var post = [Post]()

@@ -184,6 +184,10 @@ class ProfileHeaderView: UIView {
             titleStatus.text = text
             if titleStatus.text == "" {
                 titleStatus.text = " "
+                
+                textField.backgroundColor = UIColor(red: 240, green: 0, blue: 0, alpha: 0.3)
+                titleStatus.text = " "
+                
             }
             print(text)}
     }
