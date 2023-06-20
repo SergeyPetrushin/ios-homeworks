@@ -241,7 +241,7 @@ class LogInViewController: UIViewController {
         
         var loginAlert = false
         for i in userList {
-            if loginText != i.login && passwordText != i.password {
+            if loginText == i.login && passwordText == i.password {
                  loginAlert = false
                 navigationController?.pushViewController(ProfileViewController(), animated: true)
             } else {
