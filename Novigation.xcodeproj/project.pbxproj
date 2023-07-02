@@ -22,6 +22,8 @@
 		963D07E72A2628F2002D47C5 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D07E62A2628F2002D47C5 /* PhotosViewController.swift */; };
 		963D07E92A262971002D47C5 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D07E82A262971002D47C5 /* PhotosCollectionViewCell.swift */; };
 		963D07EB2A2629B8002D47C5 /* PostImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D07EA2A2629B8002D47C5 /* PostImages.swift */; };
+		96584D9F2A3C5F2B00E7683D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96584D9E2A3C5F2B00E7683D /* User.swift */; };
+		96584DA12A3C66DA00E7683D /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96584DA02A3C66DA00E7683D /* DetailPostViewController.swift */; };
 		967E12482A1FD1CC008D5161 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E12472A1FD1CC008D5161 /* LogInViewController.swift */; };
 		96BA7BD92A16228B006EB293 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA7BD82A16228B006EB293 /* ProfileHeaderView.swift */; };
 		96DB80262A21E0AA008699FD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB80252A21E0AA008699FD /* PostTableViewCell.swift */; };
@@ -46,6 +48,8 @@
 		963D07E62A2628F2002D47C5 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		963D07E82A262971002D47C5 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		963D07EA2A2629B8002D47C5 /* PostImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImages.swift; sourceTree = "<group>"; };
+		96584D9E2A3C5F2B00E7683D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		96584DA02A3C66DA00E7683D /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		967E12472A1FD1CC008D5161 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		96BA7BD82A16228B006EB293 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		96DB80252A21E0AA008699FD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				962E6F132A1585BE0079029F /* AppDelegate.swift */,
 				96BA7BD82A16228B006EB293 /* ProfileHeaderView.swift */,
 				962E6F2B2A1588C00079029F /* PostViewController.swift */,
+				96584DA02A3C66DA00E7683D /* DetailPostViewController.swift */,
 				962E6F292A1588A20079029F /* FeedViewController.swift */,
 				962E6F2D2A1588D10079029F /* InfoViewController.swift */,
 				962E6F152A1585BE0079029F /* SceneDelegate.swift */,
@@ -134,6 +139,7 @@
 			children = (
 				962E6F2F2A1588D90079029F /* Post.swift */,
 				963D07EA2A2629B8002D47C5 /* PostImages.swift */,
+				96584D9E2A3C5F2B00E7683D /* User.swift */,
 			);
 			path = post;
 			sourceTree = "<group>";
@@ -214,8 +220,10 @@
 				962E6F2C2A1588C00079029F /* PostViewController.swift in Sources */,
 				962E6F182A1585BE0079029F /* ViewController.swift in Sources */,
 				962E6F142A1585BE0079029F /* AppDelegate.swift in Sources */,
+				96584DA12A3C66DA00E7683D /* DetailPostViewController.swift in Sources */,
 				962E6F302A1588D90079029F /* Post.swift in Sources */,
 				96BA7BD92A16228B006EB293 /* ProfileHeaderView.swift in Sources */,
+				96584D9F2A3C5F2B00E7683D /* User.swift in Sources */,
 				963D07EB2A2629B8002D47C5 /* PostImages.swift in Sources */,
 				962E6F2E2A1588D10079029F /* InfoViewController.swift in Sources */,
 				962E6F2A2A1588A20079029F /* FeedViewController.swift in Sources */,

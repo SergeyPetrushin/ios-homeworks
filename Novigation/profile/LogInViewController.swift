@@ -11,7 +11,8 @@ class LogInViewController: UIViewController {
     
     
     private let notificationCenter = NotificationCenter.default
-    
+    private let userList = User.makeUser()
+
     private let  seporatorForm: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -105,6 +106,33 @@ class LogInViewController: UIViewController {
         return view
     }()
     
+    private lazy var messageForm: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemGray3
+        label.numberOfLines = 0
+        label.font = UIFont.italicSystemFont(ofSize: label.font.pointSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == loginTextField {
+            if let text = loginTextField.text, let _ = Range(range, in: text) {
+                loginTextField.backgroundColor = .systemGray6
+            }
+        }
+        if textField == passwordTextField {
+            if let text = passwordTextField.text, let _ = Range(range, in: text) {
+                passwordTextField.backgroundColor = .systemGray6
+                if text.count > 4 {
+                    messageForm.text = ""
+                }
+            }
+        }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,7 +167,8 @@ class LogInViewController: UIViewController {
         stackTextField.addArrangedSubview(seporatorForm)
         stackTextField.addArrangedSubview(passwordTextField)
         contentView.addSubview(loginButton)
-        
+        contentView.addSubview(messageForm)
+
         NSLayoutConstraint.activate([
             
             scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
@@ -175,14 +204,16 @@ class LogInViewController: UIViewController {
             loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             loginButton.widthAnchor.constraint(equalToConstant:  widthInset),
-            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+       
+            messageForm.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
+            messageForm.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor, constant: 10),
+            messageForm.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor,constant: -10),
+            messageForm.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+        
         ])
     }
     
-    
-    @objc private func pushLogin() {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
-    }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize: CGRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -197,6 +228,46 @@ class LogInViewController: UIViewController {
     @objc private func keyboardWillHide() {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
+    }
+    
+    @objc private func pushLogin() {
+        
+        guard let loginText  = loginTextField.text else {
+            return
+        }
+        guard let passwordText  = passwordTextField.text else {
+            return
+        }
+        
+        var loginAlert = false
+        for i in userList {
+            if loginText == i.login && passwordText == i.password {
+                 loginAlert = false
+                navigationController?.pushViewController(ProfileViewController(), animated: true)
+            } else {
+                 loginAlert = true
+                if loginText.count == 0 {
+                    loginTextField.backgroundColor = UIColor(red: 240, green: 0, blue: 0, alpha: 0.3)
+                     loginAlert = false
+                }
+                
+                if passwordText.count == 0 {
+                    passwordTextField.backgroundColor = UIColor(red: 240, green: 0, blue: 0, alpha: 0.3)
+                    loginAlert = false
+                } else if passwordText.count < 6 {
+                    messageForm.text = "Пароль должен быть более 5 символов"
+                    loginAlert = false
+                }
+            }
+        }
+        if loginAlert {
+            let alert = UIAlertController(title: "Ошибка", message: "Логин или пароль содержат ошибку", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default) {_ in
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true)
+            passwordTextField.text = ""
+        }
     }
 }
 

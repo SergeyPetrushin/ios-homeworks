@@ -12,7 +12,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate {
     
     //MARK: - Properties
     
-    private let postFeed = Post.createPost()
+    private var postFeed = Post.createPost()
+
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -68,11 +69,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate {
 
 extension ProfileViewController: UITableViewDataSource {
    
-    
 
-
-
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -92,6 +89,25 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
         } else  {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+           
+            
+            cell.addViews = {
+                let detailPostController = DetailPostViewController()
+                self.postFeed[indexPath.row].views += 1
+                self.tableView.reloadData()
+                detailPostController.detailPost = self.postFeed[indexPath.row]
+                detailPostController.parentNavigationControler = self.navigationController
+                self.navigationController?.present(detailPostController, animated: true)
+            }
+            
+            cell.addLikes = {
+                if !self.postFeed[indexPath.row].isLike {
+                    self.postFeed[indexPath.row].likes += 1
+                    self.postFeed[indexPath.row].isLike = true
+                    self.tableView.reloadData()
+                }
+            }
+            
             cell.setupCell(model: postFeed[indexPath.row])
             return cell
         }

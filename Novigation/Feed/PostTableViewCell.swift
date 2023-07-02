@@ -8,16 +8,21 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    
+
+    
     private let wrapView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private let postImageView: UIImageView = {
+    private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetailPost)))
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -37,11 +42,13 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let likes: UILabel = {
+    private lazy var likes: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20)
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped)))
         return label
     }()
     
@@ -53,6 +60,9 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    var addViews: (() -> Void)? = nil
+    var addLikes: (() -> Void)? = nil
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
@@ -61,6 +71,16 @@ class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    @objc func showDetailPost() {
+        if let action = self.addViews { action() }
+    }
+    
+    @objc func labelTapped() {
+        if let action = self.addLikes { action() }
+    }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -91,8 +111,6 @@ class PostTableViewCell: UITableViewCell {
             
             NSLayoutConstraint.activate([
                 
-                
-                // contentWhiteView
                 wrapView.topAnchor.constraint(equalTo: contentView.topAnchor),
                 wrapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
                 wrapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -125,4 +143,3 @@ class PostTableViewCell: UITableViewCell {
             ])
         }
     }
-
